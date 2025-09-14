@@ -1,4 +1,3 @@
-#cHANGE
 # Xamarin.iOS
 
 | Date | Version | Package | Release Notes |
