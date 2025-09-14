@@ -198,7 +198,7 @@ namespace CoreGraphics {
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGColorRef */ IntPtr CGColorCreateCopyWithAlpha (/* CGColorRef */ IntPtr color, nfloat alpha);
 
-		static IntPtr Create (CGColor source, nfloat alpha)
+		static IntPtr Create (CGColor? source, nfloat alpha)
 		{
 			if (source is null)
 				ObjCRuntime.ThrowHelper.ThrowArgumentNullException (nameof (source));
@@ -214,14 +214,14 @@ namespace CoreGraphics {
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool CGColorEqualToColor (/* CGColorRef */ IntPtr color1, /* CGColorRef */ IntPtr color2);
 
-		public static bool operator == (CGColor color1, CGColor color2)
+		public static bool operator == (CGColor? color1, CGColor? color2)
 		{
 			if (color1 is null)
 				return color2 is null;
 			return color1.Equals (color2);
 		}
 
-		public static bool operator != (CGColor color1, CGColor color2)
+		public static bool operator != (CGColor? color1, CGColor? color2)
 		{
 			if (color1 is null)
 				return color2 is not null;

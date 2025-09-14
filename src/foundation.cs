@@ -241,13 +241,13 @@ namespace Foundation {
 
 		[MacCatalyst (13, 1)]
 		[Export ("writeToURL:error:")]
-		bool Write (NSUrl url, out NSError error);
+		bool Write (NSUrl url, out [NullAllowed] NSError error);
 
 		[MacCatalyst (13, 1)]
 		[Static]
 		[Export ("arrayWithContentsOfURL:error:")]
 		[return: NullAllowed]
-		NSArray FromUrl (NSUrl url, out NSError error);
+		NSArray FromUrl (NSUrl url, out [NullAllowed] NSError error);
 
 #if false // https://github.com/xamarin/xamarin-macios/issues/15577
 		[Watch (6,0), TV (13,0), iOS (13,0)]
@@ -348,34 +348,34 @@ namespace Foundation {
 
 		[Export ("initWithURL:options:documentAttributes:error:")]
 #if !(__MACOS__ || XAMCORE_5_0)
-		NativeHandle Constructor (NSUrl url, NSDictionary options, out NSDictionary resultDocumentAttributes, ref NSError error);
+		NativeHandle Constructor (NSUrl url, NSDictionary options, out NSDictionary resultDocumentAttributes, ref [NullAllowed] NSError error);
 #else
-		NativeHandle Constructor (NSUrl url, NSDictionary options, out NSDictionary resultDocumentAttributes, out NSError error);
+		NativeHandle Constructor (NSUrl url, NSDictionary options, out NSDictionary resultDocumentAttributes, out [NullAllowed] NSError error);
 #endif
 
 		[Export ("initWithData:options:documentAttributes:error:")]
 #if XAMCORE_5_0
-		NativeHandle Constructor (NSData data, NSDictionary options, out NSDictionary resultDocumentAttributes, out NSError error);
+		NativeHandle Constructor (NSData data, NSDictionary options, out NSDictionary resultDocumentAttributes, out [NullAllowed] NSError error);
 #elif __MACOS__
-		NativeHandle Constructor (NSData data, NSDictionary options, out NSDictionary docAttributes, out NSError error);
+		NativeHandle Constructor (NSData data, NSDictionary options, out NSDictionary docAttributes, out [NullAllowed] NSError error);
 #else
-		NativeHandle Constructor (NSData data, NSDictionary options, out NSDictionary resultDocumentAttributes, ref NSError error);
+		NativeHandle Constructor (NSData data, NSDictionary options, out NSDictionary resultDocumentAttributes, ref [NullAllowed] NSError error);
 #endif
 
 #if __MACOS__ || XAMCORE_5_0
 		[Wrap ("this (url, options.GetDictionary ()!, out resultDocumentAttributes, out error)")]
-		NativeHandle Constructor (NSUrl url, NSAttributedStringDocumentAttributes options, out NSDictionary resultDocumentAttributes, out NSError error);
+		NativeHandle Constructor (NSUrl url, NSAttributedStringDocumentAttributes options, out NSDictionary resultDocumentAttributes, out [NullAllowed] NSError error);
 #else
 		[Wrap ("this (url, options.GetDictionary ()!, out resultDocumentAttributes, ref error)")]
-		NativeHandle Constructor (NSUrl url, NSAttributedStringDocumentAttributes options, out NSDictionary resultDocumentAttributes, ref NSError error);
+		NativeHandle Constructor (NSUrl url, NSAttributedStringDocumentAttributes options, out NSDictionary resultDocumentAttributes, ref [NullAllowed] NSError error);
 #endif
 
 #if __MACOS__ || XAMCORE_5_0
 		[Wrap ("this (data, options.GetDictionary ()!, out resultDocumentAttributes, out error)")]
-		NativeHandle Constructor (NSData data, NSAttributedStringDocumentAttributes options, out NSDictionary resultDocumentAttributes, out NSError error);
+		NativeHandle Constructor (NSData data, NSAttributedStringDocumentAttributes options, out NSDictionary resultDocumentAttributes, out [NullAllowed] NSError error);
 #else
 		[Wrap ("this (data, options.GetDictionary ()!, out resultDocumentAttributes, ref error)")]
-		NativeHandle Constructor (NSData data, NSAttributedStringDocumentAttributes options, out NSDictionary resultDocumentAttributes, ref NSError error);
+		NativeHandle Constructor (NSData data, NSAttributedStringDocumentAttributes options, out NSDictionary resultDocumentAttributes, ref [NullAllowed] NSError error);
 #endif
 
 		[NoiOS]
@@ -547,24 +547,24 @@ namespace Foundation {
 #endif
 		[return: NullAllowed]
 		[Export ("dataFromRange:documentAttributes:error:")]
-		NSData GetData (NSRange range, NSDictionary options, out NSError error);
+		NSData GetData (NSRange range, NSDictionary options, out [NullAllowed] NSError error);
 
 		[return: NullAllowed]
 		[Wrap ("this.GetData (range, options.GetDictionary ()!, out error)")]
-		NSData GetData (NSRange range, NSAttributedStringDocumentAttributes options, out NSError error);
+		NSData GetData (NSRange range, NSAttributedStringDocumentAttributes options, out [NullAllowed] NSError error);
 
 #if !(MONOMAC || XAMCORE_5_0)
 		[return: NullAllowed]
 		[Obsolete ("Use 'GetData' instead.")]
 		[Export ("dataFromRange:documentAttributes:error:")]
-		NSData GetDataFromRange (NSRange range, NSDictionary attributes, ref NSError error);
+		NSData GetDataFromRange (NSRange range, NSDictionary attributes, ref [NullAllowed] NSError error);
 #endif
 
 #if !(MONOMAC || XAMCORE_5_0)
 		[return: NullAllowed]
 		[Obsolete ("Use 'GetData' instead.")]
 		[Wrap ("GetDataFromRange (range, documentAttributes.GetDictionary ()!, ref error)")]
-		NSData GetDataFromRange (NSRange range, NSAttributedStringDocumentAttributes documentAttributes, ref NSError error);
+		NSData GetDataFromRange (NSRange range, NSAttributedStringDocumentAttributes documentAttributes, ref [NullAllowed] NSError error);
 #endif
 
 #if !(MONOMAC || XAMCORE_5_0)
@@ -572,24 +572,24 @@ namespace Foundation {
 #endif
 		[return: NullAllowed]
 		[Export ("fileWrapperFromRange:documentAttributes:error:")]
-		NSFileWrapper GetFileWrapper (NSRange range, NSDictionary options, out NSError error);
+		NSFileWrapper GetFileWrapper (NSRange range, NSDictionary options, out [NullAllowed] NSError error);
 
 #if !(MONOMAC || XAMCORE_5_0)
 		[return: NullAllowed]
 		[Obsolete ("Use 'GetFileWrapper' instead.")]
 		[Export ("fileWrapperFromRange:documentAttributes:error:")]
-		NSFileWrapper GetFileWrapperFromRange (NSRange range, NSDictionary attributes, ref NSError error);
+		NSFileWrapper GetFileWrapperFromRange (NSRange range, NSDictionary attributes, ref [NullAllowed] NSError error);
 #endif
 
 		[return: NullAllowed]
 		[Wrap ("this.GetFileWrapper (range, options.GetDictionary ()!, out error)")]
-		NSFileWrapper GetFileWrapper (NSRange range, NSAttributedStringDocumentAttributes options, out NSError error);
+		NSFileWrapper GetFileWrapper (NSRange range, NSAttributedStringDocumentAttributes options, out [NullAllowed] NSError error);
 
 #if !(MONOMAC || XAMCORE_5_0)
 		[return: NullAllowed]
 		[Obsolete ("Use 'GetFileWrapper' instead.")]
 		[Wrap ("GetFileWrapperFromRange (range, documentAttributes.GetDictionary ()!, ref error)")]
-		NSFileWrapper GetFileWrapperFromRange (NSRange range, NSAttributedStringDocumentAttributes documentAttributes, ref NSError error);
+		NSFileWrapper GetFileWrapperFromRange (NSRange range, NSAttributedStringDocumentAttributes documentAttributes, ref [NullAllowed] NSError error);
 #endif
 
 		[NoiOS]
@@ -1706,19 +1706,19 @@ namespace Foundation {
 
 		[MacCatalyst (13, 1)]
 		[Export ("decodeTopLevelObjectAndReturnError:")]
-		NSObject DecodeTopLevelObject (out NSError error);
+		NSObject DecodeTopLevelObject (out [NullAllowed] NSError error);
 
 		[MacCatalyst (13, 1)]
 		[Export ("decodeTopLevelObjectForKey:error:")]
-		NSObject DecodeTopLevelObject (string key, out NSError error);
+		NSObject DecodeTopLevelObject (string key, out [NullAllowed] NSError error);
 
 		[MacCatalyst (13, 1)]
 		[Export ("decodeTopLevelObjectOfClass:forKey:error:")]
-		NSObject DecodeTopLevelObject (Class klass, string key, out NSError error);
+		NSObject DecodeTopLevelObject (Class klass, string key, out [NullAllowed] NSError error);
 
 		[MacCatalyst (13, 1)]
 		[Export ("decodeTopLevelObjectOfClasses:forKey:error:")]
-		NSObject DecodeTopLevelObject ([NullAllowed] NSSet<Class> setOfClasses, string key, out NSError error);
+		NSObject DecodeTopLevelObject ([NullAllowed] NSSet<Class> setOfClasses, string key, out [NullAllowed] NSError error);
 
 		[MacCatalyst (13, 1)]
 		[Export ("failWithError:")]
@@ -1833,7 +1833,7 @@ namespace Foundation {
 
 		[Export ("dataWithContentsOfURL:options:error:")]
 		[Static]
-		NSData FromUrl (NSUrl url, NSDataReadingOptions mask, out NSError error);
+		NSData FromUrl (NSUrl url, NSDataReadingOptions mask, out [NullAllowed] NSError error);
 
 		[Export ("dataWithContentsOfFile:")]
 		[Static]
@@ -1841,7 +1841,7 @@ namespace Foundation {
 
 		[Export ("dataWithContentsOfFile:options:error:")]
 		[Static]
-		NSData FromFile (string path, NSDataReadingOptions mask, out NSError error);
+		NSData FromFile (string path, NSDataReadingOptions mask, out [NullAllowed] NSError error);
 
 		[Export ("dataWithData:")]
 		[Static]
@@ -1936,17 +1936,17 @@ namespace Foundation {
 	interface NSDataDetector : NSCopying, NSCoding {
 		[DesignatedInitializer]
 		[Export ("initWithTypes:error:")]
-		NativeHandle Constructor (NSTextCheckingTypes options, out NSError error);
+		NativeHandle Constructor (NSTextCheckingTypes options, out [NullAllowed] NSError error);
 
 		[Wrap ("this ((NSTextCheckingTypes) options, out error)")]
-		NativeHandle Constructor (NSTextCheckingType options, out NSError error);
+		NativeHandle Constructor (NSTextCheckingType options, out [NullAllowed] NSError error);
 
 		[Export ("dataDetectorWithTypes:error:"), Static]
-		NSDataDetector Create (NSTextCheckingTypes checkingTypes, out NSError error);
+		NSDataDetector Create (NSTextCheckingTypes checkingTypes, out [NullAllowed] NSError error);
 
 		[Static]
 		[Wrap ("Create ((NSTextCheckingTypes) checkingTypes, out error)")]
-		NSDataDetector Create (NSTextCheckingType checkingTypes, out NSError error);
+		NSDataDetector Create (NSTextCheckingType checkingTypes, out [NullAllowed] NSError error);
 
 		[Export ("checkingTypes")]
 		NSTextCheckingTypes CheckingTypes { get; }
@@ -13476,10 +13476,10 @@ namespace Foundation {
 #endif
 
 		[Export ("coordinateReadingItemAtURL:options:error:byAccessor:")]
-		void CoordinateRead (NSUrl itemUrl, NSFileCoordinatorReadingOptions options, out NSError error, /* non null */ Action<NSUrl> worker);
+		void CoordinateRead (NSUrl itemUrl, NSFileCoordinatorReadingOptions options, out [NullAllowed] NSError error, /* non null */ Action<NSUrl> worker);
 
 		[Export ("coordinateWritingItemAtURL:options:error:byAccessor:")]
-		void CoordinateWrite (NSUrl url, NSFileCoordinatorWritingOptions options, out NSError error, /* non null */ Action<NSUrl> worker);
+		void CoordinateWrite (NSUrl url, NSFileCoordinatorWritingOptions options, out [NullAllowed] NSError error, /* non null */ Action<NSUrl> worker);
 
 		[Export ("coordinateReadingItemAtURL:options:writingItemAtURL:options:error:byAccessor:")]
 		void CoordinateReadWrite (NSUrl readingURL, NSFileCoordinatorReadingOptions readingOptions, NSUrl writingURL, NSFileCoordinatorWritingOptions writingOptions, out NSError error, /* non null */ NSFileCoordinatorWorkerRW readWriteWorker);

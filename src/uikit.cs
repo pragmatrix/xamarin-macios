@@ -8541,12 +8541,14 @@ namespace UIKit {
 		[Export ("imageWithCGImage:")]
 		[Autorelease]
 		[ThreadSafe]
+		[return: NullAllowed]
 		UIImage FromImage (CGImage image);
 
 		[Static]
 		[Export ("imageWithCGImage:scale:orientation:")]
 		[Autorelease]
 		[ThreadSafe]
+		[return: NullAllowed]
 		UIImage FromImage (CGImage image, nfloat scale, UIImageOrientation orientation);
 
 		[NoWatch]
@@ -12812,6 +12814,7 @@ namespace UIKit {
 		NSObject WeakDelegate { get; set; }
 
 		[Wrap ("WeakDelegate")]
+		[NullAllowed]
 		IUIScrollViewDelegate Delegate { get; set; }
 
 		[Export ("bounces")]
@@ -14755,10 +14758,10 @@ namespace UIKit {
 		nint NumberOfSections (UITableView tableView);
 
 		[Export ("tableView:titleForHeaderInSection:")]
-		string TitleForHeader (UITableView tableView, nint section);
+		string? TitleForHeader (UITableView tableView, nint section);
 
 		[Export ("tableView:titleForFooterInSection:")]
-		string TitleForFooter (UITableView tableView, nint section);
+		string? TitleForFooter (UITableView tableView, nint section);
 
 		[Export ("tableView:canEditRowAtIndexPath:")]
 		bool CanEditRow (UITableView tableView, NSIndexPath indexPath);
@@ -15058,7 +15061,7 @@ namespace UIKit {
 		[Deprecated (PlatformName.TvOS, 14, 0, message: "Use 'UIListContentConfiguration' instead.")]
 		[Deprecated (PlatformName.MacCatalyst, 14, 0, message: "Use 'UIListContentConfiguration' instead.")]
 		[Export ("imageView", ArgumentSemantic.Retain)]
-		UIImageView ImageView { get; }
+		UIImageView? ImageView { get; }
 
 		[Deprecated (PlatformName.iOS, 14, 0, message: "Use 'UIListContentConfiguration' instead.")]
 		[Deprecated (PlatformName.TvOS, 14, 0, message: "Use 'UIListContentConfiguration' instead.")]
@@ -16403,7 +16406,7 @@ namespace UIKit {
 		[Export ("sizeToFit")]
 		void SizeToFit ();
 
-		[Export ("superview")]
+		[Export ("superview"), NullAllowed]
 		UIView Superview { get; }
 
 		[Export ("subviews", ArgumentSemantic.Copy)]
@@ -16459,7 +16462,8 @@ namespace UIKit {
 		bool IsDescendantOfView (UIView view);
 
 		[Export ("viewWithTag:")]
-		UIView ViewWithTag (nint tag);
+		[return: NullAllowed]
+        UIView ViewWithTag (nint tag);
 
 		[Export ("setNeedsLayout")]
 		void SetNeedsLayout ();
